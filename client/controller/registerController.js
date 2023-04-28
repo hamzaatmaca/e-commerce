@@ -1,6 +1,7 @@
 import { arrTransform } from "../utils/arrayOp.js";
 import { fetchPOST } from "../services/fetchPOST.js";
 import { validation } from "../utils/validation.js";
+import QuickAlert from "../lib/quickAlert/quickAlert.js";
 
 //Register
 const registerInputs = document.querySelectorAll(".beMemberInput");
@@ -26,7 +27,7 @@ const inputs = arrTransform(registerInputs);
 
     if (validate) {
       if (inputs[4].value !== inputs[5].value) {
-        alert("Şifreler Eşleşmiyor");
+        new QuickAlert("Şifreler Eşleşmiyor", "timeOut", 2500).fire();
       } else {
         payload.name = inputs[0].value;
         payload.surname = inputs[1].value;
@@ -39,7 +40,7 @@ const inputs = arrTransform(registerInputs);
         });
       }
     } else {
-      alert("Tüm Alanları doldurunuz");
+      new QuickAlert("Tüm Alanları Doldurunuz", "modal", 2500).fire();
     }
   });
 })();
