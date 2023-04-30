@@ -1,3 +1,4 @@
+import { logoutController } from "../controller/logoutController.js";
 import { createTPL } from "../utils/createTPL.js";
 
 /**
@@ -15,12 +16,21 @@ const router = () => {
       createTPL("home");
 
       break;
+
+    case "/logout":
+      logoutController();
+      break;
+
     case "/sign":
       createTPL("sign");
       break;
 
     case "/register":
       createTPL("register");
+      break;
+
+    case "/profile":
+      createTPL("profile");
       break;
 
     default:

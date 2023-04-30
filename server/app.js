@@ -5,6 +5,10 @@ const io = require("socket.io")(http);
 const connetDB = require("./db/db");
 const cors = require("cors");
 
+//Route
+const registerRouter = require("./router/registerRouter");
+const signRouter = require("./router/signRouter");
+
 //PORT
 const PORT = process.env.PORT || 3030;
 
@@ -36,10 +40,8 @@ app.get("/", (req, res) => {
   res.send("hi");
 });
 
-app.post("/ecommerce-api/v1/register", (req, res) => {
-  console.log(req.body);
-  res.status(200).json({ ok: "ok" });
-});
+app.use(`/ecommerce-api/v1/register`, registerRouter);
+app.use(`/ecommerce-api/v1/sign`, signRouter);
 
 http.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);

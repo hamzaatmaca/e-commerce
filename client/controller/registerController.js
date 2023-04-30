@@ -1,6 +1,5 @@
 import { arrTransform } from "../utils/arrayOp.js";
 import { fetchPOST } from "../services/fetchPOST.js";
-import { validation } from "../utils/validation.js";
 import QuickAlert from "../lib/quickAlert/quickAlert.js";
 
 //Register
@@ -23,24 +22,24 @@ const inputs = arrTransform(registerInputs);
       address: registerTextArea.value,
     };
 
-    const validate = validation(inputs);
-
-    if (validate) {
-      if (inputs[4].value !== inputs[5].value) {
-        new QuickAlert("Şifreler Eşleşmiyor", "timeOut", 2500).fire();
-      } else {
-        payload.name = inputs[0].value;
-        payload.surname = inputs[1].value;
-        payload.email = inputs[2].value;
-        payload.phone = inputs[3].value;
-        payload.password = inputs[4].value;
-
-        fetchPOST("register", payload).then((data) => {
-          console.log(data);
-        });
-      }
+    if (inputs[4].value !== inputs[5].value) {
+      new QuickAlert("Şifreler Eşleşmiyor", "timeOut", 2500).fire();
     } else {
-      new QuickAlert("Tüm Alanları Doldurunuz", "modal", 2500).fire();
+      payload.name = inputs[0].value;
+      payload.surname = inputs[1].value;
+      payload.email = inputs[2].value;
+      payload.phone = inputs[3].value;
+      payload.password = inputs[4].value;
+
+      fetchPOST("register", payload).then((data) => {
+        console.log(data);
+
+        if (Object.keys(data)[0] === "error") {
+          new QuickAlert(data.error.message, "modal", 2500).fire();
+        } else {
+          new QuickAlert(data.data, "modal", 2500).fire();
+        }
+      });
     }
   });
 })();
