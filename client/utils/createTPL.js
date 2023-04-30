@@ -1,5 +1,6 @@
-import { app } from "./dom.js";
 import TPL from "../lib/tplEngine.js";
+
+const app = document.getElementById("app");
 
 /**
  *

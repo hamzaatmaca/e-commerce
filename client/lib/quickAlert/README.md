@@ -4,7 +4,13 @@
 2- Modal Type
 3- Time For Close modal
 
-<pre>```javascript new QuickAlert("Şifreler Eşleşmiyor", "timeOut", 2500).fire(); ```</pre>
+# Usage
+
+```javascript
+new QuickAlert("Şifreler Eşleşmiyor", "timeOut", 2500).fire();
+```
+
+</pre>
 
 # If Modal type is `modal ` time is no need
 

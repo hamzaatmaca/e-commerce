@@ -14,6 +14,14 @@ class TPL {
       return false;
   }
 
+  async #createScript(path) {
+    var script = await document.createElement("script");
+    script.src = await String(path);
+    script.defer = true;
+    script.type = "module";
+    await document.body.appendChild(script);
+  }
+
   async #fetchTpl() {
     if (this.#handleError(this.#dynamicComp)) {
       throw new Error(this.#dynamicComp + " Components Can Not Be Null");
@@ -28,12 +36,10 @@ class TPL {
         urls.map((url) => fetch(url).then((response) => response.text()))
       )
         .then(async (data) => {
-          var script = await document.createElement("script");
-          script.src = await `../controller/${this.#dynamicComp}Controller.js`;
-          script.defer = true;
-          script.type = "module";
-          await document.body.appendChild(script);
-
+          await this.#createScript(
+            `../controller/${this.#dynamicComp}Controller.js`
+          );
+          await this.#createScript(`../utils/littleScript.js`);
           return data.join("");
         })
         .catch((error) => {
