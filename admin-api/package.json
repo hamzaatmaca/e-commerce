@@ -7,5 +7,9 @@
   "scripts": {
     "dev": "bun --watch server.js"
   },
-  "type": "module"
+  "type": "module",
+  "dependencies": {
+    "dotenv": "^16.0.3",
+    "mongoose": "^7.1.0"
+  }
 }
