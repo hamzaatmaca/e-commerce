@@ -20,7 +20,8 @@ exports.createSign = async (req, res) => {
               surname: loginUser.surname,
               phone: loginUser.phone,
             },
-            process.env.SECRET
+            process.env.SECRET,
+            { expiresIn: "1h" }
           );
           res.status(200).json({ data: token });
         }

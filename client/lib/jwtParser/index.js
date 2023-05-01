@@ -9,7 +9,7 @@ const JWTParser = (token) => {
 
   const decoded = base64(section);
 
-  /*   return JSON.parse(decoded); */
+  return JSON.parse(decoded);
 };
 
 export default JWTParser;

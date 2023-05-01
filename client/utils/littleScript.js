@@ -5,10 +5,9 @@ const profileLink = document.getElementById("profileLink");
 const beMemberLink = document.getElementById("beMemberLink");
 const loginLink = document.getElementById("loginLink");
 
-auth();
 //LOGOUT BUTTON CONTROLLER
 
-if (localStorage.getItem("userToken")) {
+if (auth()) {
   logout.style.display = "block";
   profileLink.style.display = "block";
 
